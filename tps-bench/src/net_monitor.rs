@@ -61,7 +61,7 @@ fn wait_custom_blocks_elapsed(net: &Net, window: u64, warmup: u64) -> Metrics {
         if last_print.elapsed() >= Duration::from_secs(60) {
             last_print = Instant::now();
             info!(
-                "warmup progress ({}/{}) ...",
+                "warmup progress ({}/{})",
                 current_tip_number,
                 current_tip_number + warmup
             );
@@ -76,7 +76,7 @@ fn wait_custom_blocks_elapsed(net: &Net, window: u64, warmup: u64) -> Metrics {
         if last_print.elapsed() >= Duration::from_secs(60) {
             last_print = Instant::now();
             info!(
-                "evaluation progress ({}/{}) ...",
+                "evaluation progress ({}/{})",
                 current_tip_number,
                 current_tip_number + warmup
             );
