@@ -14,12 +14,17 @@ jobs:
       - uses: olegtarasov/get-tag@v2.1
       - name: Build TPS-Bench
         run: |
-          cd tps-bench && cargo build --release
+          ### cd tps-bench && cargo build --release
+
+          mkdir -p target/release
+          touch target/release/tps-bench
+
           cd target/release
-          tar -czvf tps-bench_${{ env.GIT_TAG_NAME }}_x86_64-unknown-linux-gnu.tar.gz  tps-bench
+          tar -czvf ../../tps-bench_${{ env.GIT_TAG_NAME }}_x86_64-unknown-linux-gnu.tar.gz  tps-bench
       - name: Release TPS-Bench
         uses: softprops/action-gh-release@v1
         with:
-          files: "target/release/tps-bench_${{ env.GIT_TAG_NAME }}_x86_64-unknown-linux-gnu.tar.gz"
+          files: "tps-bench_${{ env.GIT_TAG_NAME }}_x86_64-unknown-linux-gnu.tar.gz"
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
